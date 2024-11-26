@@ -1,5 +1,8 @@
 package hospital.management.app;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -16,6 +19,10 @@ public class PatientDetails extends javax.swing.JFrame {
      */
     public PatientDetails() {
         initComponents();
+        setTitle("Hospital Management - Patient Section");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
     }
 
     /**

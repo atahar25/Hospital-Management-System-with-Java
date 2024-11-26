@@ -5,6 +5,9 @@
  */
 package hospital.management.app;
 
+import java.awt.BorderLayout;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Atahar Molla
@@ -16,6 +19,10 @@ public class HomePage extends javax.swing.JFrame {
      */
     public HomePage() {
         initComponents();
+        setTitle("Hospital Management - Home page");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
     }
 
     /**
@@ -172,19 +179,21 @@ public class HomePage extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AppointmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AppointmentActionPerformed
-        // TODO add your handling code here:
+        dispose(); // Close current screen
+        Appointment appointment = new Appointment();
+        appointment.setVisible(true);
     }//GEN-LAST:event_AppointmentActionPerformed
 
     private void DoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoctorActionPerformed
         dispose(); // Close current screen
-            DoctorDetails doctorManagement = new DoctorDetails();
-            doctorManagement.setVisible(true);
+        DoctorDetails doctorManagement = new DoctorDetails();
+        doctorManagement.setVisible(true);
     }//GEN-LAST:event_DoctorActionPerformed
 
     private void PatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientActionPerformed
-            dispose(); // Close current screen
-            PatientDetails patientManagement = new PatientDetails();
-            patientManagement.setVisible(true);
+        dispose(); // Close current screen
+        PatientDetails patientManagement = new PatientDetails();
+        patientManagement.setVisible(true);
     }//GEN-LAST:event_PatientActionPerformed
 
     /**
