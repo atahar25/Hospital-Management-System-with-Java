@@ -176,13 +176,15 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_AppointmentActionPerformed
 
     private void DoctorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoctorActionPerformed
-        // TODO add your handling code here:
+        dispose(); // Close current screen
+            DoctorDetails doctorManagement = new DoctorDetails();
+            doctorManagement.setVisible(true);
     }//GEN-LAST:event_DoctorActionPerformed
 
     private void PatientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientActionPerformed
-       dispose(); // Close current screen
+            dispose(); // Close current screen
             PatientDetails patientManagement = new PatientDetails();
-            patientManagement.setVisible(true); // TODO add your handling code here:
+            patientManagement.setVisible(true);
     }//GEN-LAST:event_PatientActionPerformed
 
     /**
