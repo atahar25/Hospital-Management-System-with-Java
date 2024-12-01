@@ -177,7 +177,9 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigninActionPerformed
-
+        dispose(); // Close current screen
+        SignIn signin = new SignIn();
+        signin.setVisible(true);
     }//GEN-LAST:event_SigninActionPerformed
 
     private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
@@ -186,58 +188,58 @@ public class Welcome extends javax.swing.JFrame {
 
     private void LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginActionPerformed
 
-    // Get the username and password entered by the user
-    String username = UserName.getText().trim();
-    String password = Password.getText().trim();
+        // Get the username and password entered by the user
+        String username = UserName.getText().trim();
+        String password = Password.getText().trim();
 
-    // Check if both fields are filled
-    if (username.isEmpty() || password.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter both username and password.", "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    try {
-        // Establish a connection to the database
-        connectToDatabase();
-
-        // SQL query to check if the username and password match a record in the database
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-        
-        // Create a PreparedStatement
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, username);
-        ps.setString(2, password);
-
-        // Execute the query and get the result
-        ResultSet rs = ps.executeQuery();
-
-        // Check if the result set has any matching record
-        if (rs.next()) {
-            // If user found, open the HomePage
-            
-            new HomePage().setVisible(true);
-            this.setVisible(false); // Close the login page
-        } else {
-            // If no matching user found, show an error message
-            JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
+        // Check if both fields are filled
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter both username and password.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-    } catch (SQLException e) {
-        e.printStackTrace();
-        JOptionPane.showMessageDialog(this, "Database error occurred. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-    } finally {
-        // Close the database connection (if needed)
         try {
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
+            // Establish a connection to the database
+            connectToDatabase();
+
+            // SQL query to check if the username and password match a record in the database
+            String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+
+            // Create a PreparedStatement
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            // Execute the query and get the result
+            ResultSet rs = ps.executeQuery();
+
+            // Check if the result set has any matching record
+            if (rs.next()) {
+                // If user found, open the HomePage
+
+                new HomePage().setVisible(true);
+                this.setVisible(false); // Close the login page
+            } else {
+                // If no matching user found, show an error message
+                JOptionPane.showMessageDialog(this, "Invalid username or password.", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Database error occurred. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            // Close the database connection (if needed)
+            try {
+                if (connection != null && !connection.isClosed()) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
-                  
+
     }//GEN-LAST:event_LoginActionPerformed
-                                    
+
     private void PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordActionPerformed
