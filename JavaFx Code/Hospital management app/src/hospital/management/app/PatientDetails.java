@@ -161,7 +161,7 @@ public class PatientDetails extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Back)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(453, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

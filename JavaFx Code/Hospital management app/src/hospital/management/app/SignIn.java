@@ -49,13 +49,13 @@ public class SignIn extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Back)
-                .addGap(0, 329, Short.MAX_VALUE))
+                .addGap(0, 769, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Back)
-                .addGap(0, 277, Short.MAX_VALUE))
+                .addGap(0, 532, Short.MAX_VALUE))
         );
 
         pack();
