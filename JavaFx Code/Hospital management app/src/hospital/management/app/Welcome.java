@@ -79,7 +79,7 @@ public class Welcome extends javax.swing.JFrame {
         Signin.setBackground(new java.awt.Color(51, 51, 51));
         Signin.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
         Signin.setForeground(new java.awt.Color(255, 255, 255));
-        Signin.setLabel("Sign in");
+        Signin.setLabel("Sign up");
         Signin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SigninActionPerformed(evt);
@@ -180,8 +180,8 @@ public class Welcome extends javax.swing.JFrame {
 
     private void SigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SigninActionPerformed
         dispose(); // Close current screen
-        SignIn signin = new SignIn();
-        signin.setVisible(true);
+        SignUp signup = new SignUp();
+        signup.setVisible(true);
     }//GEN-LAST:event_SigninActionPerformed
 
     private void UserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserNameActionPerformed
