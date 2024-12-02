@@ -234,7 +234,8 @@ public class PatientDetails extends javax.swing.JFrame {
         );
 
         DeletPatientButton.setBackground(new java.awt.Color(255, 0, 0));
-        DeletPatientButton.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DeletPatientButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        DeletPatientButton.setForeground(new java.awt.Color(255, 255, 255));
         DeletPatientButton.setText("Delete");
         DeletPatientButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
