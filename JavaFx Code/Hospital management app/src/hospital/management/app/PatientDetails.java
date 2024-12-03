@@ -1,7 +1,14 @@
 package hospital.management.app;
 
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -15,6 +22,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PatientDetails extends javax.swing.JFrame {
 
+    private Connection connection;
+
     /**
      * Creates new form PatientDetails
      */
@@ -25,6 +34,16 @@ public class PatientDetails extends javax.swing.JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+    }
+
+    private void connectToDatabase() {
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/testing_hospital", "root", "root");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Database Connection Failed.", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     /**
@@ -73,6 +92,15 @@ public class PatientDetails extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        PatientDetailTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                PatientDetailTableAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(PatientDetailTable);
 
         SearchPatientButton.setBackground(new java.awt.Color(255, 204, 0));
@@ -291,7 +319,45 @@ private void initializeTable() {
 
 
     private void AddPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddPatientButtonActionPerformed
-        // TODO add your handling code here:
+        String patientName = PatientName.getText().trim();
+        String patientAgeText = PatientAge.getText().trim();
+        String patientGender = (String) GenderBox.getSelectedItem();
+        String patientContact = PatientContact.getText().trim();
+
+        if (patientName.isEmpty() || patientAgeText.isEmpty() || patientContact.isEmpty() || patientGender == null) {
+            JOptionPane.showMessageDialog(this, "Please fill all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            int patientAge = Integer.parseInt(patientAgeText);
+
+            try (PreparedStatement stmt = connection.prepareStatement(
+                    "INSERT INTO patient (PatientName, PatientAge, PatientGender, Contact) VALUES (?, ?, ?, ?)"
+            )) {
+                // Set the parameters for the query
+                stmt.setString(1, patientName);
+                stmt.setInt(2, patientAge);
+                stmt.setString(3, patientGender);
+                stmt.setString(4, patientContact);
+
+                // Execute the insert operation
+                stmt.executeUpdate();
+
+                // Add new row to the JTable
+                DefaultTableModel tableModel = (DefaultTableModel) PatientDetailTable.getModel();
+                tableModel.addRow(new Object[]{patientName, patientAge, patientGender, patientContact});
+
+                // Display success message
+                JOptionPane.showMessageDialog(this, "Patient added successfully!");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid age.", "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Database error: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_AddPatientButtonActionPerformed
 
     private void PatientNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientNameActionPerformed
@@ -325,8 +391,71 @@ private void initializeTable() {
     }//GEN-LAST:event_GenderBoxActionPerformed
 
     private void DeletPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeletPatientButtonActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = PatientDetailTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a patient to delete.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        DefaultTableModel tb1Model = (DefaultTableModel) PatientDetailTable.getModel();
+
+        // Ensure the table has at least 4 columns (indices 0 to 3 for your database structure)
+        if (tb1Model.getColumnCount() < 4) {
+            JOptionPane.showMessageDialog(this, "Table structure is incorrect. Please verify the columns.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Extract patient details from the selected row
+        String patientName = (String) tb1Model.getValueAt(selectedRow, 0); // Assuming Name is in the first column
+        String patientAge = tb1Model.getValueAt(selectedRow, 1).toString(); // Age in second column
+        String patientGender = (String) tb1Model.getValueAt(selectedRow, 2); // Gender in third column
+        String patientContact = (String) tb1Model.getValueAt(selectedRow, 3); // Contact in fourth column
+
+        try (PreparedStatement stmt = connection.prepareStatement(
+                "DELETE FROM patient WHERE PatientName = ? AND PatientAge = ? AND PatientGender = ? AND Contact = ?"
+        )) {
+            // Set query parameters
+            stmt.setString(1, patientName);
+            stmt.setString(2, patientAge);
+            stmt.setString(3, patientGender);
+            stmt.setString(4, patientContact);
+
+            // Execute the DELETE query
+            int rowsAffected = stmt.executeUpdate();
+            if (rowsAffected > 0) {
+                // Remove the row from the table model if the database operation succeeded
+                tb1Model.removeRow(selectedRow);
+                JOptionPane.showMessageDialog(this, "Patient deleted successfully!");
+            } else {
+                JOptionPane.showMessageDialog(this, "No matching patient found in the database.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error while deleting patient: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_DeletPatientButtonActionPerformed
+
+    private void PatientDetailTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_PatientDetailTableAncestorAdded
+        connectToDatabase();
+        try {
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM patient");
+            while (rs.next()) {
+                String patientName = rs.getString("PatientName");
+                String patientAge = String.valueOf(rs.getInt("PatientAge"));
+                String patientGender = rs.getString("PatientGender");
+                String patientContact = rs.getString("Contact");
+
+                String tbData[] = {patientName, patientAge, patientGender, patientContact};
+                DefaultTableModel tb1Model = (DefaultTableModel) PatientDetailTable.getModel();
+                tb1Model.addRow(tbData);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_PatientDetailTableAncestorAdded
 
     /**
      * @param args the command line arguments

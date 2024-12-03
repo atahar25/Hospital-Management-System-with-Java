@@ -97,6 +97,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="PatientDetailTableAncestorAdded"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
