@@ -155,7 +155,7 @@ public class PatientDetails extends javax.swing.JFrame {
         jLabel3.setText(" Patient Gender     :");
 
         GenderBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        GenderBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gender", "Male", "Female", "Other" }));
+        GenderBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
         GenderBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GenderBoxActionPerformed(evt);

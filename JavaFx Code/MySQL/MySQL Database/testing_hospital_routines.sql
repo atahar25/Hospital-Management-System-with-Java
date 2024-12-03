@@ -16,6 +16,10 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Dumping events for database 'testing_hospital'
+--
+
+--
 -- Dumping routines for database 'testing_hospital'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -28,4 +32,4 @@
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 11:05:39
+-- Dump completed on 2024-12-03 15:42:55

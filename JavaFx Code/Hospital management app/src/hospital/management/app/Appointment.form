@@ -151,11 +151,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-              <AccessibilityProperties>
-                <Property name="AccessibleContext.accessibleParent" type="javax.accessibility.Accessible" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                  <ComponentRef name="jScrollPane2"/>
-                </Property>
-              </AccessibilityProperties>
               <Events>
                 <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="doctorListAncestorAdded"/>
               </Events>
@@ -175,11 +170,27 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
+              <StringArray count="20">
                 <StringItem index="0" value="All"/>
-                <StringItem index="1" value="Cardiology"/>
-                <StringItem index="2" value="Dermatology"/>
+                <StringItem index="1" value="Neurology"/>
+                <StringItem index="2" value="Pediatrics"/>
                 <StringItem index="3" value="Orthopedics"/>
+                <StringItem index="4" value="Oncology"/>
+                <StringItem index="5" value="Radiology"/>
+                <StringItem index="6" value="Pathology"/>
+                <StringItem index="7" value="Gastroenterology"/>
+                <StringItem index="8" value="Psychiatry"/>
+                <StringItem index="9" value="Urology"/>
+                <StringItem index="10" value="Gynecology"/>
+                <StringItem index="11" value="Ophthalmology"/>
+                <StringItem index="12" value="Nephrology"/>
+                <StringItem index="13" value="Endocrinology"/>
+                <StringItem index="14" value="Hematology"/>
+                <StringItem index="15" value="Rheumatology"/>
+                <StringItem index="16" value="Pulmonology"/>
+                <StringItem index="17" value="Immunology"/>
+                <StringItem index="18" value="General Surgery"/>
+                <StringItem index="19" value="Dermatology"/>
               </StringArray>
             </Property>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

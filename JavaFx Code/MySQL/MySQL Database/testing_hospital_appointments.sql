@@ -32,7 +32,7 @@ CREATE TABLE `appointments` (
   `doctor_specialization` varchar(50) DEFAULT NULL,
   `appointment_schedule` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `appointments` (
 
 LOCK TABLES `appointments` WRITE;
 /*!40000 ALTER TABLE `appointments` DISABLE KEYS */;
-INSERT INTO `appointments` VALUES (2,'Emily Davis',25,'Female','987-654-3210','Dr. Jane Smith','Dermatology','Tue: 11 AM'),(3,'mehedi',56,'Male','023464565','Dr. John Doe','Cardiology','Wed: 2 PM'),(9,'korim',25,'Male','0125548728585','Dr. John Doe','Cardiology','Mon: 10 AM'),(10,'korim',25,'Male','68928689','Dr. Richard Roe','Orthopedics','8:00 AM - 11:00 AM'),(12,'Jalali',52,'Male','0173654985','Dr. Karen White','Ophthalmology','9:00 AM - 12:00 PM'),(13,'Joli',56,'Male','011665686','Dr. John Doe','Cardiology','Mon: 10 AM');
+INSERT INTO `appointments` VALUES (2,'Emily Davis',25,'Female','987-654-3210','Dr. Jane Smith','Dermatology','Tue: 11 AM'),(9,'korim',25,'Male','0125548728585','Dr. John Doe','Cardiology','Mon: 10 AM'),(12,'Jalali',52,'Male','0173654985','Dr. Karen White','Ophthalmology','9:00 AM - 12:00 PM'),(13,'Joli',56,'Male','011665686','Dr. John Doe','Cardiology','Mon: 10 AM'),(19,'Mehedi',24,'Male','012697468554','Dr. ponir Mia','Dermatology','Sun:10AM-1PM');
 /*!40000 ALTER TABLE `appointments` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 11:05:39
+-- Dump completed on 2024-12-03 15:42:55

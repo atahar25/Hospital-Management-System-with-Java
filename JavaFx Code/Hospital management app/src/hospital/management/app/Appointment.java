@@ -113,12 +113,11 @@ public class Appointment extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(doctorList);
-        doctorList.getAccessibleContext().setAccessibleParent(jScrollPane2);
 
         specializationComboBox.setBackground(new java.awt.Color(0, 102, 102));
         specializationComboBox.setEditable(true);
         specializationComboBox.setForeground(new java.awt.Color(255, 255, 255));
-        specializationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Cardiology", "Dermatology", "Orthopedics" }));
+        specializationComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All", "Neurology", "Pediatrics", "Orthopedics", "Oncology", "Radiology", "Pathology", "Gastroenterology", "Psychiatry", "Urology", "Gynecology", "Ophthalmology", "Nephrology", "Endocrinology", "Hematology", "Rheumatology", "Pulmonology", "Immunology", "General Surgery", "Dermatology" }));
         specializationComboBox.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         specializationComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -28,8 +28,9 @@ CREATE TABLE `doctors` (
   `gender` varchar(10) DEFAULT NULL,
   `specialization` varchar(50) DEFAULT NULL,
   `schedule` varchar(255) DEFAULT NULL,
+  `Contact` varchar(15) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +39,7 @@ CREATE TABLE `doctors` (
 
 LOCK TABLES `doctors` WRITE;
 /*!40000 ALTER TABLE `doctors` DISABLE KEYS */;
-INSERT INTO `doctors` VALUES (1,'Dr. John Doe','Male','Cardiology','Mon: 10 AM, Wed: 2 PM, Fri: 4 PM'),(2,'Dr. Jane Smith','Female','Dermatology','Tue: 11 AM, Thu: 3 PM'),(3,'Dr. Mary Johnson','Female','Orthopedics','Mon: 9 AM, Thu: 1 PM'),(4,'Dr. James Brown','Male','Orthopedics','Tue: 10 AM, Fri: 3 PM'),(5,'Dr. William Lee','Male','Cardiology','Mon: 8 AM, Wed: 4 PM, Fri: 2 PM'),(6,'Dr. John Doe','Male','Cardiology','Sun: 12:00 PM, Mon: 2:00 PM,Wed: 5:00 PM'),(7,'Dr. Jane Smith','Female','Dermatology','10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM'),(8,'Dr. Richard Roe','Male','Orthopedics','8:00 AM - 11:00 AM, 1:00 PM - 4:00 PM'),(9,'Dr. Emily Davis','Female','Cardiology','9:30 AM - 12:30 PM, 2:30 PM - 5:30 PM'),(10,'Dr. Mark Wilson','Male','Orthopedics','9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM'),(11,'Dr. Sarah Lee','Female','Dermatology','10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM'),(12,'Dr. Thomas Clark','Male','Neurology','8:30 AM - 11:30 AM, 1:30 PM - 4:30 PM'),(13,'Dr. Rachel Green','Female','Pediatrics','9:00 AM - 12:00 PM, 2:00 PM - 5:00 PM'),(14,'Dr. Michael Harris','Male','Psychiatry','10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM'),(15,'Dr. Jessica Martin','Female','Obstetrics','7:30 AM - 10:30 AM, 12:30 PM - 3:30 PM'),(16,'Dr. William White','Male','Surgery','8:00 AM - 12:00 PM, 1:00 PM - 5:00 PM'),(17,'Dr. Olivia Brown','Female','Gynecology','9:00 AM - 1:00 PM, 2:00 PM - 5:00 PM'),(18,'Dr. David Johnson','Male','Urology','8:00 AM - 11:00 AM, 12:00 PM - 4:00 PM'),(19,'Dr. Laura King','Female','Internal Medicine','9:30 AM - 12:30 PM, 1:30 PM - 4:30 PM'),(20,'Dr. Andrew Thomas','Male','Endocrinology','10:00 AM - 1:00 PM, 2:00 PM - 5:00 PM'),(21,'Dr. Karen White','Female','Ophthalmology','9:00 AM - 12:00 PM, 1:00 PM - 4:00 PM'),(22,'Dr. Steven Walker','Male','Dentistry','8:30 AM - 11:30 AM, 2:00 PM - 5:00 PM'),(23,'Dr. Patricia Hall','Female','Gastroenterology','9:00 AM - 12:00 PM, 1:30 PM - 4:30 PM'),(24,'Dr. Brian Lee','Male','Rheumatology','8:00 AM - 11:00 AM, 2:00 PM - 5:00 PM'),(25,'Dr. Megan Clark','Female','Infectious Diseases','10:00 AM - 1:00 PM, 3:00 PM - 6:00 PM');
+INSERT INTO `doctors` VALUES (28,'Dr. Robert Brown','Male','Neurology','Mon: 9 AM, Thu: 11 AM','345-678-9012'),(29,'Dr. Lisa Taylor','Female','Pediatrics','Tue: 10 AM, Fri: 2 PM','456-789-0123'),(30,'Dr. Michael Lee','Male','Orthopedics','Wed: 1 PM, Sat: 3 PM','567-890-1234'),(31,'Dr. Sarah Wilson','Female','Oncology','Mon: 2 PM, Thu: 4 PM','678-901-2345'),(32,'Dr. David Anderson','Male','Radiology','Tue: 9 AM, Fri: 1 PM','789-012-3456'),(33,'Dr. Emily Thomas','Female','Pathology','Mon: 11 AM, Wed: 3 PM','890-123-4567'),(34,'Dr. James Jackson','Male','Gastroenterology','Tue: 2 PM, Thu: 4 PM','901-234-5678'),(35,'Dr. Karen White','Female','Psychiatry','Wed: 10 AM, Sat: 1 PM','012-345-6789'),(36,'Dr. Daniel Harris','Male','Urology','Mon: 12 PM, Fri: 3 PM','123-456-7809'),(37,'Dr. Jessica Martin','Female','Gynecology','Tue: 11 AM, Thu: 2 PM','234-567-8902'),(38,'Dr. Thomas Moore','Male','Ophthalmology','Mon: 9 AM, Wed: 1 PM','345-678-9013'),(39,'Dr. Jennifer Clark','Female','Nephrology','Tue: 10 AM, Fri: 4 PM','456-789-0124'),(40,'Dr. Richard Lewis','Male','Endocrinology','Wed: 11 AM, Sat: 2 PM','567-890-1235'),(41,'Dr. Olivia Walker','Female','Hematology','Mon: 10 AM, Thu: 1 PM','678-901-2346'),(42,'Dr. William Scott','Male','Rheumatology','Tue: 12 PM, Fri: 3 PM','789-012-3457'),(43,'Dr. Sophia Young','Female','Pulmonology','Wed: 9 AM, Sat: 4 PM','890-123-4568'),(44,'Dr. Charles King','Male','Immunology','Mon: 1 PM, Thu: 3 PM','901-234-5679'),(45,'Dr. Isabella Martinez','Female','General Surgery','Tue: 3 PM, Fri: 1 PM','012-345-6790'),(47,'Dr. Kobir Khan','Male','Pathology','Sun: 10 AM, Sun: 11 AM, Sun:12 PM','012345678936'),(49,'Dr. Joges Bosu','Male','Neurology','Fri: 10AM-3PM','0123456987'),(50,'Dr. ponir Mia','Male','Dermatology','Sun:10AM-1PM','0132546987');
 /*!40000 ALTER TABLE `doctors` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 11:05:39
+-- Dump completed on 2024-12-03 15:42:55

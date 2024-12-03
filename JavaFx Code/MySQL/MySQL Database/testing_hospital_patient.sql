@@ -29,7 +29,7 @@ CREATE TABLE `patient` (
   `PatientGender` enum('Male','Female','Other') NOT NULL,
   `Contact` varchar(15) NOT NULL,
   PRIMARY KEY (`PatientID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `patient` (
 
 LOCK TABLES `patient` WRITE;
 /*!40000 ALTER TABLE `patient` DISABLE KEYS */;
-INSERT INTO `patient` VALUES (2,'Jane Smith',34,'Female','9876543210'),(3,'Michael Brown',50,'Male','1122334455'),(5,'Chris Wilson',40,'Male','3344556677'),(6,'Sophia Taylor',27,'Female','4455667788'),(9,'Noah Lee',22,'Male','7788990011'),(10,'Emma Garcia',55,'Female','8899001122');
+INSERT INTO `patient` VALUES (2,'Jane Smith',34,'Female','9876543210'),(3,'Michael Brown',50,'Male','1122334455'),(5,'Chris Wilson',40,'Male','3344556677'),(6,'Sophia Taylor',27,'Female','4455667788'),(10,'Emma Garcia',55,'Female','8899001122');
 /*!40000 ALTER TABLE `patient` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-12-03 11:05:39
+-- Dump completed on 2024-12-03 15:42:55
