@@ -1,15 +1,25 @@
 package hospital.management.app;
 
+import com.itextpdf.text.Document;
 import java.awt.BorderLayout;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -74,6 +84,7 @@ public class PatientDetails extends javax.swing.JFrame {
         BackButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         DeletPatientButton = new javax.swing.JButton();
+        PrintButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -271,6 +282,16 @@ public class PatientDetails extends javax.swing.JFrame {
             }
         });
 
+        PrintButton.setBackground(new java.awt.Color(0, 102, 102));
+        PrintButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        PrintButton.setForeground(new java.awt.Color(255, 255, 255));
+        PrintButton.setText("Print");
+        PrintButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrintButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -278,16 +299,21 @@ public class PatientDetails extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(DeletPatientButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(PrintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(DeletPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -305,7 +331,9 @@ public class PatientDetails extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(DeletPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DeletPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PrintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
@@ -457,6 +485,96 @@ private void initializeTable() {
 
     }//GEN-LAST:event_PatientDetailTableAncestorAdded
 
+    private void PrintButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrintButtonActionPerformed
+       JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save File");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+
+        // Add file filter to allow only PDF files
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Documents (*.pdf)", "pdf"));
+
+        // Show save dialog and capture user action
+        int userSelection = fileChooser.showSaveDialog(null);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+
+            // Ensure the file has a .pdf extension
+            if (!filePath.toLowerCase().endsWith(".pdf")) {
+                filePath += ".pdf";
+            }
+
+            // Create the PDF document
+            Document document = new Document();
+
+            try {
+                PdfWriter.getInstance(document, new FileOutputStream(filePath));
+                document.open();
+
+                // Add title to the document
+                Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+                Paragraph title1 = new Paragraph("JAVA Hospital", titleFont);
+
+                title1.setAlignment(Element.ALIGN_CENTER);
+                title1.setSpacingAfter(40);
+                document.add(title1);
+
+                Paragraph title = new Paragraph("Patient Details");
+                title.setAlignment(Element.ALIGN_CENTER);
+                title.setSpacingAfter(20);
+                document.add(title);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                String currentDateTime = dateFormat.format(new Date());
+                Font dateFont = FontFactory.getFont(FontFactory.HELVETICA, 12);
+                Paragraph dateTime = new Paragraph("Generated on: " + currentDateTime, dateFont);
+                dateTime.setAlignment(Element.ALIGN_RIGHT);
+                dateTime.setSpacingAfter(20);
+                document.add(dateTime);
+
+                // Create a table for the PDF
+                DefaultTableModel model = (DefaultTableModel) PatientDetailTable.getModel();
+                int columnCount = model.getColumnCount();
+                PdfPTable pdfTable = new PdfPTable(columnCount);
+
+                // Add headers to the table
+                for (int i = 0; i < columnCount; i++) {
+                    PdfPCell header = new PdfPCell(new Phrase(model.getColumnName(i), FontFactory.getFont(FontFactory.HELVETICA_BOLD)));
+                    header.setHorizontalAlignment(Element.ALIGN_CENTER);
+                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    pdfTable.addCell(header);
+                }
+
+                // Add rows to the table
+                int rowCount = model.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    for (int j = 0; j < columnCount; j++) {
+                        pdfTable.addCell(model.getValueAt(i, j).toString());
+                    }
+                }
+
+                // Add table to the document
+                pdfTable.setWidthPercentage(100);
+                pdfTable.setSpacingBefore(10);
+                document.add(pdfTable);
+
+                // Close the document
+                document.close();
+
+                // Show success message
+                JOptionPane.showMessageDialog(null, "PDF saved successfully at: " + filePath);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error while creating PDF: " + e.getMessage());
+            }
+        } else {
+            // User cancelled the save operation
+            JOptionPane.showMessageDialog(null, "Save operation cancelled.");
+        }
+    }//GEN-LAST:event_PrintButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -501,6 +619,7 @@ private void initializeTable() {
     private javax.swing.JTextField PatientContact;
     private javax.swing.JTable PatientDetailTable;
     private javax.swing.JTextField PatientName;
+    private javax.swing.JButton PrintButton;
     private javax.swing.JTextField SearchBar;
     private javax.swing.JButton SearchPatientButton;
     private javax.swing.JLabel jLabel1;
