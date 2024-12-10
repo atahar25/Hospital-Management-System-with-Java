@@ -239,7 +239,7 @@ public class Appointment extends javax.swing.JFrame {
         jLabel11.setText("Date:");
 
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("e.g.:  2024-12-11");
+        jLabel12.setText("e.g.:  2024-12-28");
 
         BookAppointmentButton.setBackground(new java.awt.Color(0, 51, 0));
         BookAppointmentButton.setForeground(new java.awt.Color(255, 255, 255));
