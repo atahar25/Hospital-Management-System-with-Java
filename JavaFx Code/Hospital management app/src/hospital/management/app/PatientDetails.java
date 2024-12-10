@@ -68,8 +68,6 @@ public class PatientDetails extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         PatientDetailTable = new javax.swing.JTable();
-        SearchPatientButton = new javax.swing.JButton();
-        SearchBar = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         PatientName = new javax.swing.JTextField();
@@ -113,21 +111,6 @@ public class PatientDetails extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(PatientDetailTable);
-
-        SearchPatientButton.setBackground(new java.awt.Color(255, 204, 0));
-        SearchPatientButton.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        SearchPatientButton.setText("Search Patient");
-        SearchPatientButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchPatientButtonActionPerformed(evt);
-            }
-        });
-
-        SearchBar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchBarActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -304,12 +287,7 @@ public class PatientDetails extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(SearchBar, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(PrintButton, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -321,13 +299,7 @@ public class PatientDetails extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SearchBar)
-                            .addComponent(SearchPatientButton, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,14 +377,6 @@ private void initializeTable() {
         HomePage dashboard = new HomePage();
         dashboard.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_BackButtonActionPerformed
-
-    private void SearchPatientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchPatientButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchPatientButtonActionPerformed
-
-    private void SearchBarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchBarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SearchBarActionPerformed
 
     private void GenderBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GenderBoxActionPerformed
         // TODO add your handling code here:
@@ -513,7 +477,7 @@ private void initializeTable() {
                 document.open();
 
                 // Add title to the document
-                Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 16);
+                Font titleFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20);
                 Paragraph title1 = new Paragraph("JAVA Hospital", titleFont);
 
                 title1.setAlignment(Element.ALIGN_CENTER);
@@ -620,8 +584,6 @@ private void initializeTable() {
     private javax.swing.JTable PatientDetailTable;
     private javax.swing.JTextField PatientName;
     private javax.swing.JButton PrintButton;
-    private javax.swing.JTextField SearchBar;
-    private javax.swing.JButton SearchPatientButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
